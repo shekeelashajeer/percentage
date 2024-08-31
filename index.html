@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div calss="calc">
+        <h1>Percentage Calculator</h1>
+        <form>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="method" value="percentage" checked> Percentage
+                </label>
+                <label>
+                    <input type="radio" name="method" value="amount"> Amount
+                </label>
+                <label>
+                    <input type="radio" name="method" value="total"> Total
+                </label>
+            </div><br><br>
+            <div>
+                <label for="fiirstValue">First Value:</label>
+                <input type="number" id="firstValue" placeholder="Enter value">
+            </div>
+            <div>
+                <label for="secondValue">Second Value:</label>
+                <input type="number" id="secondValue" placeholder="Enter value">
+            </div>
+            <div>
+                <label for="result">Result:</label>
+                <div id="result">0</div>
+            </div>
+            <div>
+                <button type="button" id="calculateBtn">Calculate</button>
+            </div>
+        </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('calculateBtn').addEventListener("click", function() {
+            var firstValue = parseFloat(document.getElementById("firstValue").value);
+            var secondValue = parseFloat(document.getElementById("secondValue").value);
+            var result = document.getElementById("result");
+            var method = document.querySelector('input[name="method"]:checked').value;
+
+            if (isNaN(firstValue) || isNaN(secondValue)) {
+                result.textContent = "Please enter valid values.";
+                return;
+            }
+
+            if (method === "percentage") {
+                
+                result.textContent = (firstValue / secondValue) * 100 + "%";
+            } else if (method === "amount") {
+                
+                result.textContent = (firstValue / 100) * secondValue;
+            } else if (method === "total") {
+                
+                result.textContent = (firstValue / secondValue) * 100;
+            }
+        });
+    </script>
+</body>
+</html>
